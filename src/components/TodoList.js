@@ -1,0 +1,12 @@
+import React from 'react';
+
+const TodoList = () => {
+  return (
+    <div>
+      <h2>Todo List</h2>
+      {/* Render todo items here */}
+    </div>
+  );
+};
+
+export default TodoList;
