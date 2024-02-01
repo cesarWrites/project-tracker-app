@@ -53,7 +53,7 @@ const Login = () => {
         console.log(response.data);
 
         // Redirect to project list
-       navigate('/projects');
+       navigate('/dashboard');
       } catch (error) {
         console.error('Login error:', error.message);
       }
