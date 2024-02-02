@@ -1,9 +1,9 @@
-// ProjectTable.js
+ // ProjectTable.js
 import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import axios from 'axios';
 
-const ProjectList = () => {
+const ConfirmedProjects = () => {
   const [projects, setProjects] = useState([]);
  
   useEffect(() => {
@@ -22,23 +22,23 @@ const ProjectList = () => {
 
   return (
     <div className='confirmed-projects'>
-      <h4>Confirmed Projects</h4>
+      <h4>Tentative Projects</h4>
       <div className='table-content'>
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
+            <TableCell>ProjectID</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>End Date</TableCell>
+            <TableCell>Client</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {projects.map((project) => (
             <TableRow key={project.id}>
-              <TableCell>{project.name}</TableCell>
               <TableCell>{project.code}</TableCell>
               <TableCell>{project.name}</TableCell>
+              <TableCell>{project.client}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -49,4 +49,4 @@ const ProjectList = () => {
   );
 };
 
-export default ProjectList;
+export default ConfirmedProjects;
