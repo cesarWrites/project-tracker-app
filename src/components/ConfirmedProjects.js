@@ -2,8 +2,26 @@
 import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  table: {
+    minWidth: 650,
+    border: '1px solid #ddd', // Add border style
+  },
+  tableHeaderCell: {
+    fontWeight: 'bold',
+    border: '1px solid #ddd', // Add border style
+    padding: theme.spacing(1),
+  },
+  tableBodyCell: {
+    border: '1px solid #ddd', // Add border style
+    padding: theme.spacing(1),
+  },
+}));
 
 const ConfirmedProjects = () => {
+  const classes = useStyles();
   const [projects, setProjects] = useState([]);
  
   useEffect(() => {
@@ -21,11 +39,11 @@ const ConfirmedProjects = () => {
   }, []);
 
   return (
-    <div className='confirmed-projects'>
+    <div className='prj-tentative'>
       <h4>Tentative Projects</h4>
       <div className='table-content'>
     <TableContainer component={Paper}>
-      <Table>
+      <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>ProjectID</TableCell>
