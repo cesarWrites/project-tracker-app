@@ -6,19 +6,21 @@ import Login from './components/Login';
 import SignUp from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import SideNavbar from './components/Sidenavbar';
-
+import LandingPage from './components/LandingPage';
 
 function App() {
   return (
+    <div>
     <Router>
     <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword/>} />
         <Route path="/projects" element={<ProjectList/>} />
-        <Route path="/dashboard" element={<SideNavbar/>}/>
+        <Route path="/dashboard" element={<LandingPage/>}/>
     </Routes>
     </Router>
+    </div>
   );
 }
 
