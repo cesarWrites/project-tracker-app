@@ -1,3 +1,12 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .logo {
   display: block;
 }
@@ -29,10 +38,9 @@
   color: #276D8D;
 }
 .confirmed-projects{
-  border: 2px solid rgb(253, 235, 208);
+  border: 1px solid rgb(253, 235, 208);
   margin: 2%;
   width: 40%;
-  padding: 2%;
   border-radius: 2%;
 }
 
@@ -53,8 +61,31 @@
 
 .main-dashboard div{
   width: fit-content;
-  margin-left: 4%;
 }
 
+.item-four{
+  width: 100%;
+}
 
+.prj-tentative {
+  border: 1px solid rgb(253, 235, 208);
+  margin: 2%;
+  width: fit-content;
+  border-radius: 2%;
+}
+.dashboard-det{
+margin-left: 20%;
+background-color: #fff;
+}
+
+.main-dashboard{
+  background-color: rgba(255, 255, 255)
+}
+
+.side-nav img{
+  margin-top: 30%;
+  width: fit-content;
+  margin-left: 5%;
+  margin-right: 5%;
+}
 
