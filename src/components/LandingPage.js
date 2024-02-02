@@ -7,21 +7,31 @@ import '../App.css';
 
 const LandingPage = () => {
     return (
-        <div className='container'>
-        <div className='main-dashboard'>
-            <div className='item-one'>
-        <SideNavbar/>
+        <div className='main-dashboard' style={{ height: '100vh'}}>
+        <SideNavbar />
+  
+        {/* Main Content Container */}
+        <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
+          {/* Tables Container */}
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {/* Table 1 (Side by Side) */}
+            <div style={{ flex: 1, marginRight: '20px', zIndex: 0 }}>
+              <QuickAction />
+            </div>
+  
+            {/* Table 2 (Side by Side) */}
+            <div style={{ flex: 1, zIndex: 0 }}>
+              <ConfirmedProjects />
+            </div>
+          </div>
+  
+          {/* Table 3 (At the Bottom) */}
+          <div style={{ marginTop: '20px', zIndex: 0 }}>
+            <ProjectList />
+          </div>
         </div>
-        <div className='item-two'>
-        <QuickAction/>
-        </div>
-        <div className='item-three'>
-        <ProjectList/>
-        </div>
-        </div>
-        <ConfirmedProjects/>
-        </div>
-    )
-}
+      </div>
+          );
+        };
 
 export default LandingPage;
