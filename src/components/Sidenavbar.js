@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemText, IconButton, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import QuickAction from './QuickAction';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +27,8 @@ const SideNavbar = () => {
   };
 
   return (
-    <div>
+    <div className='nav-main'>
+      <div className='nav-list'>
       <IconButton
         color="inherit"
         aria-label="open drawer"
@@ -61,6 +62,7 @@ const SideNavbar = () => {
           {/* Add more items as needed */}
         </List>
       </Drawer>
+      </div>
     </div>
   );
 };

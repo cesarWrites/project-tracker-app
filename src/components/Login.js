@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button, TextField, Typography, Container, makeStyles, Link } from '@material-ui/core';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import NavSection from './NavComponent';
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   submitButton: {
-    backgroundColor: '#4caf50',
+    backgroundColor: '#5EAFD3',
     color: '#fff'
   },
   forgotPasswordLink: {
@@ -66,6 +67,8 @@ const Login = () => {
   };
 
   return (
+    <div>
+    <NavSection/>
     <Container className={classes.formContainer} component="main" maxWidth="xs">
       <Typography variant="h5">Login</Typography>
       <form className={classes.form} onSubmit={handleSubmit}>
@@ -107,6 +110,7 @@ const Login = () => {
         </Link>
       </form>
     </Container>
+    </div>
   );
 };
 

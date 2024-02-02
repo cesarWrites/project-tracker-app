@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
   formField: {
     marginBottom: theme.spacing(2),
   },
+  submitButton: {
+    backgroundColor: '#5EAFD3',
+    color: '#fff'
+  },
 }));
 
 const ForgotPassword = () => {
@@ -63,7 +67,11 @@ const ForgotPassword = () => {
           value={formData.email}
           onChange={handleChange}
         />
-        <Button type="submit" fullWidth variant="contained" color="primary">
+        <Button type="submit" 
+        fullWidth 
+        variant="contained" 
+        color="primary"
+        className={classes.submitButton}>
           Reset Password
         </Button>
       </form>
