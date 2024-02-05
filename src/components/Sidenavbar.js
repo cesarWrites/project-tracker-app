@@ -41,19 +41,31 @@ const SideNavbar = () => {
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary="Home" />
+          <ListItemText primary="Dashboard" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
-          <ListItemText primary="Users" />
+          <ListItemText primary="Survey" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
             <WorkIcon />
           </ListItemIcon>
-          <ListItemText primary="Projects" />
+          <ListItemText primary="Reports" />
+        </ListItem>
+        <ListItem button>
+        <ListItemIcon>
+            <WorkIcon />
+          </ListItemIcon>
+          <ListItemText primary=" Finance" />
+        </ListItem>
+        <ListItem button>
+        <ListItemIcon>
+            <WorkIcon />
+          </ListItemIcon>
+          <ListItemText primary=" Admin" />
         </ListItem>
         {/* Add more items as needed */}
       </List>
