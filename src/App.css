@@ -1,6 +1,7 @@
-body, html {
-  margin: 0;
-  padding: 0;
+body {
+  width: 100%; 
+  margin: 0 auto; 
+  overflow-x: hidden; 
 }
 
 * {
@@ -21,7 +22,7 @@ body, html {
 
 .quick-action{
   margin: 4%;
-  border: 2px solid rgb(253, 235, 208);
+  border: 1px solid rgb(12, 10, 8);
   border-radius: 4%;
   padding: 2%;
   width: fit-content;
@@ -38,9 +39,10 @@ body, html {
   color: #276D8D;
 }
 .confirmed-projects{
-  border: 1px solid rgb(253, 235, 208);
-  margin: 2%;
-  width: 40%;
+  border: 1px solid rgb(9, 9, 8);
+  margin: 4%;
+  width: 50%;
+  padding: 4%;
   border-radius: 2%;
 }
 
@@ -49,9 +51,9 @@ body, html {
   text-align:center;
 }
 
-.table-content{
-  margin: 2%;
-  padding: 2%;
+.table-content table{
+  padding: 1%;
+  border: 1px solid rgb(9, 9, 8);
 }
 
 .main-dashboard{
@@ -68,9 +70,10 @@ body, html {
 }
 
 .prj-tentative {
-  border: 1px solid rgb(253, 235, 208);
-  margin: 2%;
-  width: fit-content;
+  border: 1px solid rgb(9, 9, 8);
+  margin: 4%;
+  width: 50%;
+  padding: 4%;
   border-radius: 2%;
 }
 .dashboard-det{
@@ -89,3 +92,6 @@ background-color: #fff;
   margin-right: 5%;
 }
 
+.custom-login-button{
+  background-color: transparent;
+}
