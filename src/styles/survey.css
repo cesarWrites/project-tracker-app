@@ -1,0 +1,46 @@
+.form-survey{
+    margin: 2%;
+    padding: 2%;
+}
+
+.form-survey form{
+    border: 1px solid #000000;
+    padding: 2%;
+}
+
+.salesforce-opportunity{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+.project-det-form{
+    margin: 2%;
+    width: max-content;
+}
+.prj-summary textarea {
+    width: 100%;
+}
+
+.project-details{
+    display: flex;
+}
+
+.project-info{
+    width: 50%;
+}
+
+.confirm-project{
+    flex: 1;
+    margin-left: 4%;
+    font-size: 1.0rem;
+}
+.hr-horizontal{
+    max-width:100%;
+    border: 2px solid #000000;
+    font-weight: bolder;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+.prj-key{
+    border: 2px solid #000000;
+}

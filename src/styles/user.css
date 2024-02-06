@@ -1,0 +1,11 @@
+.div-create-user{
+    border:1px solid rgb(18, 18, 18) ;
+    border-radius: 4%;
+    padding: 4%;
+    margin: 10%;
+}
+
+.div-create-user button{
+    margin-left: 30%;
+    background-color: #5EAFD3;
+}
