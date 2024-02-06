@@ -7,6 +7,7 @@ import SignUp from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import SideNavbar from './components/Sidenavbar';
 import LandingPage from './components/LandingPage';
+import ProjectForm from './components/ProjectForm';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword/>} />
         <Route path="/projects" element={<ProjectList/>} />
         <Route path="/dashboard" element={<LandingPage/>}/>
+        <Route path="/survey" element={<ProjectForm/>}/>
     </Routes>
     </Router>
     </div>
