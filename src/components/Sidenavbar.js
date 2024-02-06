@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
@@ -37,13 +38,13 @@ const SideNavbar = () => {
        <img src={logo} alt="OCA logo"/>
       <div className={classes.toolbar} />
       <List>
-        <ListItem button>
+        <ListItem button component={Link} to="/dashboard">
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/survey">
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>
@@ -69,6 +70,12 @@ const SideNavbar = () => {
         </ListItem>
         {/* Add more items as needed */}
       </List>
+      <ListItem button component={Link} to="/">
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Log Out" />
+        </ListItem>
     </Drawer>
     </div>
   );
