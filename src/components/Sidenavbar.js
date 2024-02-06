@@ -62,11 +62,11 @@ const SideNavbar = () => {
           </ListItemIcon>
           <ListItemText primary=" Finance" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/admin">
         <ListItemIcon>
             <WorkIcon />
           </ListItemIcon>
-          <ListItemText primary=" Admin" />
+          <ListItemText primary=" Admin"/>
         </ListItem>
         {/* Add more items as needed */}
       </List>
