@@ -1,94 +1,579 @@
-import React, { useState, useEffect } from 'react';
-import { FormControl, InputLabel, Select, MenuItem, Button, Typography, Container, makeStyles } from '@material-ui/core';
+import React, { useState } from 'react';
+import { TextField, Select, MenuItem, FormControl, InputLabel, Grid, Typography, Button } from '@mui/material';
+import '../styles/survey.css';
+import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme) => ({
-  formContainer: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-  },
-  formControl: {
-    width: '100%',
-    marginBottom: theme.spacing(2),
-  },
-  button: {
-    marginTop: theme.spacing(2),
+  submitButton: {
+    backgroundColor: '#5EAFD3',
+    color: '#fff',
+    marginTop: '2%'
   },
 }));
 
 const ProjectForm = () => {
   const classes = useStyles();
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [otherData, setOtherData] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
-  useEffect(() => {
-    // Simulate fetching countries from an endpoint
-    // Replace this with actual API call or data fetching logic
-    const fetchCountries = async () => {
-      // Example API endpoint for countries
-      const response = await fetch('https://restcountries.com/v3.1/all');
-      const data = await response.json();
-      setCountries(data);
-    };
+  // Simulated data from the database
+  const dropdownOptions = [
+    { value: 'option1', label: 'Option 1' },
+    { value: 'option2', label: 'Option 2' },
+    { value: 'option3', label: 'Option 3' },
+  ];
 
-    fetchCountries();
-  }, []);
+  const dropdownOption2 = [
+    { value: 'yes', label: 'yes' },
+    { value: 'no', label: 'no' }
+  ]
 
-  const handleCountryChange = (event) => {
-    setSelectedCountry(event.target.value);
+  const dropdownCountry1 = [
+    { value: 'Kenya', label: 'Kenya'},
+    { value: 'Uganda', label: 'Uganda'},
+    { value: 'Zambia', label: 'Zambia' },
+    { value: 'Mauritius', label: 'Mauritius' },
+    { value: 'Nigeria', label: 'Nigeria' }
+  ]
+  const dropdownCountry2 = [
+    { value: 'Kenya', label: 'Kenya'},
+    { value: 'Uganda', label: 'Uganda'},
+    { value: 'Zambia', label: 'Zambia' },
+    { value: 'Mauritius', label: 'Mauritius' },
+    { value: 'Nigeria', label: 'Nigeria' }
+  ]
+
+  const handleDropDownChangeTwo = (event) => {
+    setSelectedOption(event.target.value);
+  };
+  const handleDropdownChange = (event) => {
+    setSelectedOption(event.target.value);
   };
 
-  const handleOtherDataChange = (event) => {
-    setOtherData(event.target.value);
-  };
-
-  const handleSubmit = () => {
-    // Handle form submission logic here
-    console.log('Form submitted with:', { selectedCountry, otherData });
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
   };
 
   return (
     <div className='form-survey'>
-      <div className='inst-div'>
-      <h2>Instructions</h2>
-      <p>Step 1: Select the Tentative Project you would like to confirm from the Project Name field</p>
-      <p>Confirm that the client name and project start date and end date is accurate</p>
-      <p>Step 3: Fill in other project information accurately and click on the submit button at the end of this form</p>
-      <hr/>
+    <h2>Instructions</h2>
+    <p>Step 1: Select the Tentative Project you would like to confirm from the Project Name field</p>
+    <p>Confirm that the client name and project start date and end date is accurate</p>
+    <p>Step 3: Fill in other project information accurately and click on the submit button at the end of this form</p>
+    <hr/>
+
+    <div className='salesforce-opportunity'>
+    <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <InputLabel htmlFor="dropdown">Salesforce Opportunity</InputLabel>
+          <Select
+            id="dropdown1"
+            value={selectedOption}
+            onChange={handleDropdownChange}
+            label="Select an option"
+            fullWidth
+          >
+            {dropdownOptions.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </Select>
+        </Grid>
+        <Grid item xs={6}>
+        <InputLabel htmlFor="dropdown">Stage</InputLabel>
+          <TextField
+            id="input-field"
+            label="Q1-2023"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+    </div>
+    <form className='project-det-form'>
+      <div className='project-details'>
+      <div className='project-info'>
+      <Typography fontWeight={'bold'}>Project Information</Typography>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Project name</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Is it part of a larger project</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Client type</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Engagement type</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">OCA entity involved in signing the contract</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Does it include a capital raise component</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropDownChangeTwo}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOption2.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Client's main country of operation</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown-country1"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownCountry1.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Client's secondary country of operations</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown-country2"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownCountry2.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Is the business located in a rural location or buy/sell in rural areas?</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Industry</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Secondary industry</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+   
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Business unit*</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <hr className='hr-horizontal'/>
+      <Typography fontWeight={'bold'}>OCA Project Details</Typography>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">OCA capability 1</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+   
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">OCA capability 2</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="textfield">Project summary (1-2 phrases)</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <textarea
+        id="input-field"
+        variant="outlined"
+        fullWidth
+        width={'1'}
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      </Grid>
+      </Grid>
+      <hr className='hr-horizontal'/>
+        <Typography fontWeight={'bold'}>Key client contact</Typography>
+        <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="dropdown">Full name</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="input-field"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Email address</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
       </div>
-    <Container className={classes.formContainer}>
-      <Typography variant="h5">Form Sections</Typography>
-
-      {/* Country Dropdown */}
-      <FormControl className={classes.formControl}>
-        <InputLabel>Select Country</InputLabel>
-        <Select value={selectedCountry} onChange={handleCountryChange}>
-          {countries.map((country) => (
-            <MenuItem key={country.id} value={country.id}>
-              {country.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-
-      {/* Other Dropdowns and Inputs */}
-      <FormControl className={classes.formControl}>
-        <InputLabel>Select Other Data</InputLabel>
-        <Select value={otherData} onChange={handleOtherDataChange}>
-          {/* Add options for other data */}
-          <MenuItem value="option1">Option 1</MenuItem>
-          <MenuItem value="option2">Option 2</MenuItem>
-          {/* Add more options as needed */}
-        </Select>
-      </FormControl>
-
-      {/* Add more sections, dropdowns, and inputs as needed */}
-
-      {/* Submit Button */}
-      <Button variant="contained" color="primary" className={classes.button} onClick={handleSubmit}>
-        Submit
-      </Button>
-    </Container>
+        <div className='confirm-project'>
+        <Typography>*These are the current details from 10k ft.Please confirm if accurate</Typography>
+        <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Client Name</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Project Start Date</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Project End Date </InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Typography>*If the information above is incorrect, please input the correct information below:</Typography>
+        <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Client Name</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Project Start Date</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Project End Date </InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <section className='prj-key'>
+        <h2>Key</h2>
+        <p> O- OCA</p>
+        <p>A- Arcadia placement</p>
+      </section>
+      <section className='prj-placement'>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Primary support the analyst will be providing</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Secondary support the analyst will be providing </InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+        <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">In which city will the analyst be based?</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      </section>
+        </div>
+      </div>
+      <Button type="submit" 
+        fullWidth 
+        variant="contained" 
+        color="primary"
+        className={classes.submitButton}>
+          Submit
+        </Button>
+    </form>
     </div>
   );
 };
