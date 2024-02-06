@@ -8,6 +8,7 @@ import ForgotPassword from './components/ForgotPassword';
 import SideNavbar from './components/Sidenavbar';
 import LandingPage from './components/LandingPage';
 import ProjectForm from './components/ProjectForm';
+import CreateUser from './components/admin/CreateUser';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/projects" element={<ProjectList/>} />
         <Route path="/dashboard" element={<LandingPage/>}/>
         <Route path="/survey" element={<ProjectForm/>}/>
+        <Route path="/admin" element={<CreateUser/>}/>
     </Routes>
     </Router>
     </div>
