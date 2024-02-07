@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { TextField, Select, MenuItem, FormControl, InputLabel, Grid, Typography, Button } from '@mui/material';
 import '../styles/survey.css';
-import { makeStyles } from '@mui/styles'
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   submitButton: {
     backgroundColor: '#5EAFD3',
     color: '#fff',
-    marginTop: '2%'
+    marginTop: '2%',
+    width: '50%'
   },
 }));
 
@@ -15,6 +16,7 @@ const ProjectForm = () => {
   const classes = useStyles();
   const [selectedOption, setSelectedOption] = useState('');
   const [inputValue, setInputValue] = useState('');
+  const [stageInputValue, setStageInputValue] = useState('');
 
   // Simulated data from the database
   const dropdownOptions = [
@@ -54,6 +56,9 @@ const ProjectForm = () => {
     setInputValue(event.target.value);
   };
 
+  const handleStageInputChange = (event) => {
+    setStageInputValue(event.target.value);
+  };
   return (
     <div className='form-survey'>
     <h2>Instructions</h2>
@@ -87,8 +92,8 @@ const ProjectForm = () => {
             label="Q1-2023"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={stageInputValue}
+            onChange={ handleStageInputChange }
           />
         </Grid>
       </Grid>
@@ -552,6 +557,155 @@ const ProjectForm = () => {
         <Grid container spacing={2} margin={'auto'}>
         <Grid item xs={4}>
         <InputLabel htmlFor="email">In which city will the analyst be based?</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      </section>
+      <section className='loe-info'>
+      <Grid container spacing={2} margin={'auto'}>
+      <Grid xs={4}>
+      <InputLabel htmlFor="dropdown">Have you previously provided budget LOE via the project code survey? (i.e., if part of a larger project)</InputLabel>
+      </Grid>
+      <Grid xs={8}>
+      <Select
+        id="dropdown"
+        value={selectedOption}
+        onChange={handleDropdownChange}
+        label="Select an option"
+        fullWidth
+      >
+        {dropdownOptions.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+      </Grid>
+      <Typography fontWeight={'bold'}>Budget LOE</Typography>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Budget LOE (Approved by AP for 300K or Partner for 300K)</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Partner</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Associate Partner</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Associate Partner</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Principal</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Senior PL/Senior TL</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">Project Leader/Transaction Leader</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">(S) Associate</InputLabel>
+        </Grid>
+        <Grid xs={8}>
+          <TextField
+            id="email-input"
+            variant="outlined"
+            fullWidth
+            value={inputValue}
+            onChange={handleInputChange}
+          />
+        </Grid>
+      </Grid>
+      <Grid container spacing={2} margin={'auto'}>
+        <Grid item xs={4}>
+        <InputLabel htmlFor="email">(S) Analyst</InputLabel>
         </Grid>
         <Grid xs={8}>
           <TextField
