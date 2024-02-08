@@ -1,5 +1,5 @@
 .form-survey{
-    padding: 2%;
+    margin: 2%;
 }
 
 .form-survey form{
@@ -25,14 +25,13 @@
 }
 
 .project-info{
-    width: 50%;
+    width: fit-content;
 }
 
 .confirm-project{
     flex: 1;
-    width: 50%;
-    margin-left: 4%;
-    padding: 4%;
+    width: fit-content;
+    margin-left: 2%;
     font-size: 1.0rem;
 }
 .hr-horizontal{
@@ -48,4 +47,9 @@
 }
 .loe-info{
     margin-top: 2%;
+}
+
+.form-survey{
+    width: 100vh;
+    height: 100vh;
 }
