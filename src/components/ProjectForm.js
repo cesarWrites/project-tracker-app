@@ -8,7 +8,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#5EAFD3',
     color: '#fff',
     marginTop: '2%',
-    width: '50%'
+    marginLeft: '60%',
+    padding: '44%',
+    alignContent: 'center'
   },
 }));
 
@@ -58,6 +60,9 @@ const ProjectForm = () => {
 
   const handleStageInputChange = (event) => {
     setStageInputValue(event.target.value);
+  };
+  const handleSubmit = () => {
+    // Implement user registration, update, or delete logic here
   };
   return (
     <div className='form-survey'>
@@ -720,13 +725,16 @@ const ProjectForm = () => {
       </section>
         </div>
       </div>
-      <Button type="submit" 
-        fullWidth 
-        variant="contained" 
-        color="primary"
-        className={classes.submitButton}>
+        <Grid item xs={12} marginLeft={50}>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.submitButton}
+          onClick={handleSubmit}
+        >
           Submit
         </Button>
+      </Grid>
     </form>
     </div>
   );
