@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MyCheckbox from '../utils/MyCheckbox';
 import '../../styles/user.css';
+import UserTable from './UserList';
 import {
   TextField,
   Button,
