@@ -9,6 +9,7 @@ import SideNavbar from './components/Sidenavbar';
 import LandingPage from './components/LandingPage';
 import ProjectForm from './components/ProjectForm';
 import CreateUser from './components/admin/CreateUser';
+import AdminNavigation from './components/admin/AdminNav';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/projects" element={<ProjectList/>} />
         <Route path="/dashboard" element={<LandingPage/>}/>
         <Route path="/survey" element={<ProjectForm/>}/>
-        <Route path="/admin" element={<CreateUser/>}/>
+        <Route path="/admin" element={<AdminNavigation/>}/>
     </Routes>
     </Router>
     </div>
