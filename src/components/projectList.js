@@ -5,19 +5,19 @@ import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  table: {
-    minWidth: 650,
-    border: '1px solid #ddd', // Add border style
-  },
-  tableHeaderCell: {
-    fontWeight: 'bold',
-    border: '1px solid #ddd', // Add border style
-    padding: theme.spacing(1),
-  },
-  tableBodyCell: {
-    border: '1px solid #ddd', // Add border style
-    padding: theme.spacing(1),
-  },
+  // table: {
+  //   minWidth: 650,
+  //   border: '1px solid #ddd', // Add border style
+  // },
+  // tableHeaderCell: {
+  //   fontWeight: 'bold',
+  //   border: '1px solid #ddd', // Add border style
+  //   padding: theme.spacing(1),
+  // },
+  // tableBodyCell: {
+  //   border: '1px solid #ddd', // Add border style
+  //   padding: theme.spacing(1),
+  // },
 }));
 
 const ProjectList = () => {
