@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextField, Select, MenuItem, FormControl, InputLabel, Grid, Typography, Button } from '@mui/material';
 import '../styles/survey.css';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +20,13 @@ const ProjectForm = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [stageInputValue, setStageInputValue] = useState('');
+  const [projects, setProjects] = useState([]);
+  const [projectData, setProjectData] = useState([]);
+  const [salesOpportunity, setSalesOpportunity] = useState('');
+  const [projectSummary, setProjectSummary] = useState('');
+  const [signingEntity, setSigningEntity] = useState('');
+  const [capitalRaise, setCapitalRaise] = useState('')
+ 
 
   // Simulated data from the database
   const dropdownOptions = [
@@ -27,9 +35,19 @@ const ProjectForm = () => {
     { value: 'option3', label: 'Option 3' },
   ];
 
-  const dropdownOption2 = [
+  const entityOptions = [
+    { value: 'kenya', label: 'kenya'},
+    { value: 'Mauritius', label: 'Mauritius'},
+    { value: 'Uganda', label: 'Uganda'}
+  ];
+
+  const capitalOptions = [
     { value: 'yes', label: 'yes' },
     { value: 'no', label: 'no' }
+  ]
+  const salesOptions = [
+    {value: 'proposal', label: 'proposal'},
+    {value: 'closed', label: 'closed'},
   ]
 
   const dropdownCountry1 = [
@@ -47,6 +65,16 @@ const ProjectForm = () => {
     { value: 'Nigeria', label: 'Nigeria' }
   ]
 
+  const handleSalesOpportunityChange = (event) => {
+    setSalesOpportunity(event.target.value);
+  }
+
+  const handleSigningEntityChange = (event) => {
+    setSigningEntity(event.target.value);
+  }
+  const handleCapitalRaiseChange = (event) => {
+    setCapitalRaise(event.target.value);
+  }
   const handleDropDownChangeTwo = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -61,8 +89,32 @@ const ProjectForm = () => {
   const handleStageInputChange = (event) => {
     setStageInputValue(event.target.value);
   };
-  const handleSubmit = () => {
-    // Implement user registration, update, or delete logic here
+  
+ 
+  useEffect(() => {
+    // Fetch project data from the server when the component mounts
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/projects');
+        setProjects(response.data);
+      } catch (error) {
+        console.error('Error fetching projects:', error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/projects', projectData);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Signup error:', error.message);
+    }
+  console.log('Project submitted:', projectData);
   };
   return (
     <div className='form-survey'>
@@ -77,13 +129,13 @@ const ProjectForm = () => {
         <Grid item xs={6}>
           <InputLabel htmlFor="dropdown">Salesforce Opportunity</InputLabel>
           <Select
-            id="dropdown1"
-            value={selectedOption}
-            onChange={handleDropdownChange}
+            id="dropdown-sf"
+            value={salesOpportunity}
+            onChange={handleSalesOpportunityChange}
             label="Select an option"
             fullWidth
           >
-            {dropdownOptions.map((option) => (
+            {salesOptions.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.label}
               </MenuItem>
@@ -193,13 +245,13 @@ const ProjectForm = () => {
       </Grid>
       <Grid xs={8}>
       <Select
-        id="dropdown"
-        value={selectedOption}
-        onChange={handleDropdownChange}
+        id="dropdown-ent"
+        value={signingEntity}
+        onChange={handleSigningEntityChange}
         label="Select an option"
         fullWidth
       >
-        {dropdownOptions.map((option) => (
+        {entityOptions.map((option) => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
@@ -213,13 +265,13 @@ const ProjectForm = () => {
       </Grid>
       <Grid xs={8}>
       <Select
-        id="dropdown"
-        value={selectedOption}
-        onChange={handleDropDownChangeTwo}
+        id="dropdown-cp"
+        value={capitalRaise}
+        onChange={handleCapitalRaiseChange}
         label="Select an option"
         fullWidth
       >
-        {dropdownOption2.map((option) => (
+        {capitalOptions.map((option) => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
@@ -403,7 +455,7 @@ const ProjectForm = () => {
         fullWidth
         width={'1'}
         value={inputValue}
-        onChange={handleInputChange}
+        onChange={(e) => setProjectSummary(e.target.value)}
       />
       </Grid>
       </Grid>
