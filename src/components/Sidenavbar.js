@@ -56,7 +56,7 @@ const SideNavbar = () => {
           </ListItemIcon>
           <ListItemText primary="Reports" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/finance">
         <ListItemIcon>
             <WorkIcon />
           </ListItemIcon>
