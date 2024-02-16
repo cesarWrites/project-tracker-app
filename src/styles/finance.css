@@ -1,0 +1,11 @@
+AppBar {
+    background-color: #282a58;
+}
+.comment-form{
+    width: 50%;
+    margin: 10%;
+}
+
+.comment-form button{
+    margin-left: 25%;
+}
