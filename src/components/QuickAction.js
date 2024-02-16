@@ -1,8 +1,13 @@
 import React from 'react';
 import '../App.css';
-import { Button, ButtonGroup } from '@mui/material';
+import { Button, ButtonGroup, Link } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const QuickAction = () => {
+    const navigate = useNavigate();
+    const handleProjectApproval = () => {
+        navigate('/approval');
+      };
     return(
         <div className='quick-action'>
             <h1>QUICK ACTIONS</h1>
@@ -14,7 +19,8 @@ const QuickAction = () => {
             <Button style={{  borderRadius: '10px', 
             padding: '20px', 
             border: '2px solid rgb(253, 235, 208)', 
-            width: 'fit-content'}} href="/component1">Approve Project</Button>
+            width: 'fit-content'}} > <Link onClick={handleProjectApproval}>Approve Project
+    </Link></Button>
             <Button style={{ borderRadius: '10px', 
             padding: '20px', 
             border: '2px solid rgb(253, 235, 208)', 

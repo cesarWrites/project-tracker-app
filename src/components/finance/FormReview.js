@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Select, MenuItem, FormControl, InputLabel, Grid, Typography, Button } from '@mui/material';
-import '../styles/survey.css';
+import '../../styles/survey.css';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+import CommentForm from './CommentForm';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   submitButton: {
@@ -15,7 +17,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProjectForm = () => {
+
+const FormReview = () => {
+  const navigate = useNavigate();
+
+const handleCommentChange = () => {
+  navigate('/comment');
+}
   const classes = useStyles();
   const [selectedOption, setSelectedOption] = useState('');
   const [inputValue, setInputValue] = useState('');
@@ -25,12 +33,8 @@ const ProjectForm = () => {
   const [salesOpportunity, setSalesOpportunity] = useState('');
   const [projectSummary, setProjectSummary] = useState('');
   const [signingEntity, setSigningEntity] = useState('');
-  const [capitalRaise, setCapitalRaise] = useState('');
-  const [inputValue1, setInputValue1] = useState('');
-  const [inputValue2, setInputValue2] = useState('');
-  const [inputValue3, setInputValue3] = useState('');
-  const [inputValue4, setInputValue4] = useState('');
-  const [inputValue5, setInputValue5] = useState('');
+  const [capitalRaise, setCapitalRaise] = useState('')
+ 
 
   // Simulated data from the database
   const dropdownOptions = [
@@ -85,33 +89,15 @@ const ProjectForm = () => {
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
   };
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
+
   const handleStageInputChange = (event) => {
-    setInputValue1(event.target.value);
-  };
-
-  const handleInputChange1 = (event) => {
-    setInputValue1(event.target.value);
-  };
-  const handleInputChange2 = (event) => {
-    setInputValue2(event.target.value);
-  };
-
-  const handleStageInputChange2 = (event) => {
-    setInputValue2(event.target.value);
+    setStageInputValue(event.target.value);
   };
   
-  const handleInputChange3 = (event) => {
-    setInputValue3(event.target.value);
-  };
-  const handleInputChange4 = (event) => {
-    setInputValue4(event.target.value);
-  };
-  const handleInputChange5 = (event) => {
-    setInputValue5(event.target.value);
-  };
  
   useEffect(() => {
     // Fetch project data from the server when the component mounts
@@ -492,8 +478,8 @@ const ProjectForm = () => {
             id="input-field"
             variant="outlined"
             fullWidth
-            value={inputValue1}
-            onChange={handleInputChange1}
+            value={inputValue}
+            onChange={handleInputChange}
           />
         </Grid>
       </Grid>
@@ -506,8 +492,8 @@ const ProjectForm = () => {
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue2}
-            onChange={handleInputChange2}
+            value={inputValue}
+            onChange={handleInputChange}
           />
         </Grid>
       </Grid>
@@ -524,7 +510,7 @@ const ProjectForm = () => {
             variant="outlined"
             fullWidth
             value={inputValue}
-            onChange={handleInputChange3}
+            onChange={handleInputChange}
           />
         </Grid>
       </Grid>
@@ -538,7 +524,7 @@ const ProjectForm = () => {
             variant="outlined"
             fullWidth
             value={inputValue}
-            onChange={handleInputChange4}
+            onChange={handleInputChange}
           />
         </Grid>
       </Grid>
@@ -552,7 +538,7 @@ const ProjectForm = () => {
             variant="outlined"
             fullWidth
             value={inputValue}
-            onChange={handleInputChange4}
+            onChange={handleInputChange}
           />
         </Grid>
       </Grid>
@@ -587,11 +573,11 @@ const ProjectForm = () => {
       </Grid>
       <Grid container spacing={2} margin={'auto'}>
         <Grid item xs={4}>
-        <InputLabel htmlFor="end date">Project End Date </InputLabel>
+        <InputLabel htmlFor="email">Project End Date </InputLabel>
         </Grid>
         <Grid xs={8}>
           <TextField
-            id="end-date"
+            id="email-input"
             variant="outlined"
             fullWidth
             value={inputValue}
@@ -749,7 +735,7 @@ const ProjectForm = () => {
             id="email-input"
             variant="outlined"
             fullWidth
-            value={''}
+            value={inputValue}
             onChange={handleInputChange}
           />
         </Grid>
@@ -806,12 +792,22 @@ const ProjectForm = () => {
           className={classes.submitButton}
           onClick={handleSubmit}
         >
-          Submit
+          Approve
         </Button>
       </Grid>
     </form>
+    <section>
+    <Button
+          variant="contained"
+          color="primary"
+          className={classes.submitButton}
+          onClick={handleCommentChange}
+        >
+          Comment
+        </Button>
+    </section>
     </div>
   );
 };
 
-export default ProjectForm;
+export default FormReview;
