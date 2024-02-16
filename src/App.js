@@ -8,10 +8,11 @@ import ForgotPassword from './components/ForgotPassword';
 import SideNavbar from './components/Sidenavbar';
 import LandingPage from './components/LandingPage';
 import ProjectForm from './components/ProjectForm';
-import CreateUser from './components/admin/CreateUser';
 import AdminNavigation from './components/admin/AdminNav';
 import FinanceNavigation from './components/finance/FinanceNav';
-
+import FormReview from './components/finance/FormReview';
+import FinanceApproval from './components/finance/ApproveProject';
+import CommentForm from './components/finance/CommentForm';
 function App() {
   return (
     <div>
@@ -25,6 +26,9 @@ function App() {
         <Route path="/survey" element={<ProjectForm/>}/>
         <Route path="/admin" element={<AdminNavigation/>}/>
         <Route path="/finance" element={<FinanceNavigation/>}/>
+        <Route path="/review" element={<FormReview/>}/>
+        <Route path="/approval" element={<FinanceApproval/>}/>
+        <Route path="/comment" element={<CommentForm/>}/>
     </Routes>
     </Router>
     </div>
