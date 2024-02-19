@@ -3,6 +3,7 @@ import { AppBar, Tabs, Tab,makeStyles } from '@material-ui/core';
 import FinanceApproval from './ApproveProject';
 import CreateBusinessUnitForm from './BusinessUnit';
 import CreateEngagementType from './EngagementType';
+import IndustryAdmin from './IndustryAdmin';
 import '../../styles/finance.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,15 +26,17 @@ const FinanceNavigation = () => {
     <div className='app-bar'>
       {<AppBar position="static">
         <Tabs value={value} onChange={handleChange}>
-          <Tab label="Create Business Unit" />
           <Tab label="Finance Approval" />
+          <Tab label="Business Unit" />
           <Tab label="Engagement Type" />
+          <Tab label="Industry"/>
         </Tabs>
       </AppBar>
     }
-      {value === 0 && <CreateBusinessUnitForm onSubmit={handleCreateBusinessUnitSubmit} />}
-      {value === 1 && <FinanceApproval />} 
+      {value === 0 && <FinanceApproval />} 
+      {value === 1 && <CreateBusinessUnitForm onSubmit={handleCreateBusinessUnitSubmit} />}
       {value === 2 && <CreateEngagementType />} 
+      {value === 3 && <IndustryAdmin />}
     </div>
   );
 };
