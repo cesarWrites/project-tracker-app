@@ -45,7 +45,10 @@ const CreateEngagementType = () => {
         required
       />
       
-      <Button variant="contained" color="primary" type="submit">
+      <Button variant="contained" 
+      color="primary"
+      style={{ backgroundColor: '#5EAFD3', marginTop: '1rem' }} 
+      type="submit">
         Create Engagement
       </Button>
     </form>

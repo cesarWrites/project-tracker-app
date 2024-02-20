@@ -24,7 +24,7 @@ const FinanceNavigation = () => {
 
   return (
     <div className='app-bar'>
-      {<AppBar position="static">
+      {<AppBar position="static" style={{ backgroundColor: '#152238'}} >
         <Tabs value={value} onChange={handleChange}>
           <Tab label="Finance Approval" />
           <Tab label="Business Unit" />
