@@ -2,20 +2,28 @@ import React, { useState } from 'react';
 import CreateUser from './CreateUser'; // Import your users table component
 import UserTable from './UserList'; // Import your create user form component
 import { Button } from '@material-ui/core';
+import { AppBar, Tabs, Tab,makeStyles } from '@material-ui/core';
+import axios from 'axios';
 
 const AdminNavigation = () => {
-  const [showTable, setShowTable] = useState(true); // State to toggle between table and form
+  const [value, setValue] = useState(0);
 
-  const toggleView = () => {
-    setShowTable(!showTable); // Toggle the state when the button is clicked
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
 
   return (
-    <div>
-      <Button variant="contained" color="primary" onClick={toggleView}>
-        {showTable ? 'Show Form' : 'Show Table'}
-      </Button>
-      {showTable ? <UserTable /> : <CreateUser />}
+    <div className='app-bar'>
+      {<AppBar position="static" style={{ backgroundColor: '#152238'}}>
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="Create User" />
+          <Tab label="  View Users" />
+        </Tabs>
+      </AppBar>
+    }
+
+      {value === 0 && <CreateUser />} 
+      {value === 1 && <UserTable />}
     </div>
   );
 };
