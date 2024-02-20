@@ -34,23 +34,25 @@ const Login = () => {
   const classes = useStyles();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const [userData, setUserData] = useState({
     email: '',
     password: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    setUserData({...userData, [name]: value});
+    /*
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
+    */
+  }
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:5000/login', formData);
+        const response = await axios.get('http://localhost:3122/accounts/user', userData);
         console.log(response.data);
 
         // Redirect to project list
@@ -58,6 +60,15 @@ const Login = () => {
       } catch (error) {
         console.error('Login error:', error.message);
       }
+      /*try {
+        const response = await axios.post('http://localhost:5000/login', formData);
+        console.log(response.data);
+
+        // Redirect to project list
+       navigate('/dashboard');
+      } catch (error) {
+        console.error('Login error:', error.message);
+      }*/
   };
 
   const handleForgotPassword = () => {
@@ -82,7 +93,7 @@ const Login = () => {
           label="Email Address"
           name="email"
           type="email"
-          value={formData.email}
+          value={userData.email}
           onChange={handleChange}
         />
         <TextField
@@ -95,7 +106,7 @@ const Login = () => {
           label="Password"
           name="password"
           type="password"
-          value={formData.password}
+          value={userData.password}
           onChange={handleChange}
         />
         <Button type="submit" 
