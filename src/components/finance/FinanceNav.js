@@ -4,6 +4,8 @@ import FinanceApproval from './ApproveProject';
 import CreateBusinessUnitForm from './BusinessUnit';
 import CreateEngagementType from './EngagementType';
 import IndustryAdmin from './IndustryAdmin';
+import SigningEntity from './SigningEntity';
+import CapabilityAdmin from './CapabilityAdmin';
 import '../../styles/finance.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +32,8 @@ const FinanceNavigation = () => {
           <Tab label="Business Unit" />
           <Tab label="Engagement Type" />
           <Tab label="Industry"/>
+          <Tab label="Signing Entity"/>
+          <Tab label="OCA Capability"/>
         </Tabs>
       </AppBar>
     }
@@ -37,6 +41,8 @@ const FinanceNavigation = () => {
       {value === 1 && <CreateBusinessUnitForm onSubmit={handleCreateBusinessUnitSubmit} />}
       {value === 2 && <CreateEngagementType />} 
       {value === 3 && <IndustryAdmin />}
+      {value === 4 && <SigningEntity />}
+      {value === 5 && <CapabilityAdmin />}
     </div>
   );
 };
