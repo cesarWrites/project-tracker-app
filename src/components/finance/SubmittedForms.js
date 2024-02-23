@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Link } from '@mui/material';
-import ProjectForm from '../ProjectForm';
+import ProjectForm from '../projects/ProjectForm';
 import { useNavigate } from 'react-router-dom';
 
 // Sample data (replace with your actual data)

@@ -5,7 +5,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import PeopleIcon from '@material-ui/icons/People';
 import WorkIcon from '@material-ui/icons/Work';
 import NavSection from './NavComponent';
-import logo from '../assets/oca_logo.svg';
+import logo from '../../assets/oca_logo.svg';
 
 const drawerWidth = 240;
 

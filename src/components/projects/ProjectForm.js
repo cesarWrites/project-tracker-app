@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Select, MenuItem, FormControl, InputLabel, Grid, Typography, Button } from '@mui/material';
-import '../styles/survey.css';
+import '../../styles/survey.css';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 

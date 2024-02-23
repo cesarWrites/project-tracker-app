@@ -62,15 +62,18 @@ const SigningEntity = () => {
     <div>
         <form className={classes.form} onSubmit={handleSubmit}>
       <TextField
-        label="Business Unit"
+        label="Signing Entity"
         variant="outlined"
         className={classes.inputField}
         value={industryName}
         onChange={handleChange}
         required
       />
-      <Button variant="contained" color="primary" type="submit">
-        Business Unit
+      <Button variant="contained" 
+      color="primary" 
+      style={{ backgroundColor: '#5EAFD3', marginTop: '1rem' }} 
+      type="submit">
+        Signing Entity
       </Button>
     </form>
     <div className={classes.listContainer}>

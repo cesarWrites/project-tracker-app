@@ -3,20 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import '../App.css';
+import '../../App.css';
 
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
-    border: '1px solid #ddd', // Add border style
+    border: '1px solid #ddd', 
   },
   tableHeaderCell: {
     fontWeight: 'bold',
-    border: '1px solid #ddd', // Add border style
+    border: '1px solid #ddd', 
     padding: theme.spacing(1),
   },
   tableBodyCell: {
-    border: '1px solid #ddd', // Add border style
+    border: '1px solid #ddd', 
     padding: theme.spacing(1),
   },
 }));

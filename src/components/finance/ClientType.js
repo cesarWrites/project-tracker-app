@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CreateBusinessUnitForm = () => {
+const CreateClientType = () => {
   const classes = useStyles();
   const [businessUnit, setBusinessUnit] = useState('');
 
@@ -38,32 +38,23 @@ const CreateBusinessUnitForm = () => {
   return (
     <div>
     <form className={classes.form} onSubmit={handleSubmit}>
-    <TextField
-        label="Notation"
-        variant="outlined"
-        className={classes.inputField}
-        value={businessUnit}
-        onChange={handleChange}
-        required
-      />
       <TextField
-        label="Business Unit"
+        label="Client Type"
         variant="outlined"
         className={classes.inputField}
         value={businessUnit}
         onChange={handleChange}
         required
       />
-      <Button variant="contained" 
-      color="primary" 
+      <Button variant="contained" color="primary" 
       style={{ backgroundColor: '#5EAFD3', marginTop: '1rem' }} 
       type="submit">
-        Business Unit
+        Client Type
       </Button>
     </form>
-    <BusinessUnitList/>
     </div>
   );
 };
 
-export default CreateBusinessUnitForm;
+
+export default CreateClientType;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, TextField, Typography, Container, makeStyles, Link } from '@material-ui/core';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import NavSection from './NavComponent';
+import NavSection from '../navigation/NavComponent';
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -42,38 +42,21 @@ const Login = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData({...userData, [name]: value});
-    /*
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    */
   }
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-        const response = await axios.get('http://localhost:3122/accounts/user', userData);
-        console.log(response.data);
-
-        // Redirect to project list
-       navigate('/dashboard');
+    const response = await axios.get('http://localhost:3122/accounts/user', userData);
+    if(response.status == 200){
+      navigate('/dashboard');
+    }
+    // Redirect to project list
       } catch (error) {
         console.error('Login error:', error.message);
       }
-      /*try {
-        const response = await axios.post('http://localhost:5000/login', formData);
-        console.log(response.data);
-
-        // Redirect to project list
-       navigate('/dashboard');
-      } catch (error) {
-        console.error('Login error:', error.message);
-      }*/
   };
-
   const handleForgotPassword = () => {
-    // Redirect to the forgot password page or show a modal
-    // You can add the specific route or component for the forgot password feature
     navigate('/forgot-password');
   };
 

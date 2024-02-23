@@ -6,6 +6,7 @@ import CreateEngagementType from './EngagementType';
 import IndustryAdmin from './IndustryAdmin';
 import SigningEntity from './SigningEntity';
 import CapabilityAdmin from './CapabilityAdmin';
+import CreateClientType from './ClientType';
 import '../../styles/finance.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +21,7 @@ const FinanceNavigation = () => {
   };
 
   const handleCreateBusinessUnitSubmit = (businessUnit) => {
-    // Implement logic to submit business unit to the server
+    // Endpoint to submit client type data to database
     console.log('Submitting business unit:', businessUnit);
   };
 
@@ -34,6 +35,8 @@ const FinanceNavigation = () => {
           <Tab label="Industry"/>
           <Tab label="Signing Entity"/>
           <Tab label="OCA Capability"/>
+          <Tab label="Client Type"/>
+          <Tab label="Practicum Support"/>
         </Tabs>
       </AppBar>
     }
@@ -43,6 +46,8 @@ const FinanceNavigation = () => {
       {value === 3 && <IndustryAdmin />}
       {value === 4 && <SigningEntity />}
       {value === 5 && <CapabilityAdmin />}
+      {value === 6 && <CreateClientType/>}
+      {value === 7 }
     </div>
   );
 };

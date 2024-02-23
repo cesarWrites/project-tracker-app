@@ -1,9 +1,9 @@
 import React from 'react';
 import QuickAction from './QuickAction';
 import SideNavbar from './Sidenavbar';
-import ProjectList from './projectList';
-import ConfirmedProjects from './ConfirmedProjects';
-import '../App.css';
+import ProjectList from '../projects/projectList';
+import ConfirmedProjects from '../projects/ConfirmedProjects';
+import '../../App.css';
 
 const LandingPage = () => {
     return (
