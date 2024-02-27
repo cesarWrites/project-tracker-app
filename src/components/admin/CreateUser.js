@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../state/userSlice'
 import MyCheckbox from '../utils/MyCheckbox';
 import '../../styles/user.css';
-import UserTable from './UserList';
 import axios from 'axios';
 
 import {
   TextField,
+  makeStyles,
   Button,
   Grid,
   Typography,
@@ -15,14 +17,27 @@ import {
   MenuItem,
 } from '@material-ui/core';
 
+const useStyles = makeStyles((theme) => ({
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 'auto',
+    marginTop: '5%'
+  },
+  inputField: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
 const CreateUser = () => {
+  const dispatch = useDispatch();
+  const classes = useStyles();
 
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState('');
 
   useEffect(() => {
-    // Fetch data from the API endpoint
-    axios.get('http://localhost:3122/accounts/role/')
+    axios.get('http://34.125.226.2:3122/auth_service/accounts/role/')
       .then(response => {
           // The role key is nested within the response object
           const rolesData = response.data.data.map(role => role.role);
@@ -35,9 +50,6 @@ const CreateUser = () => {
       });
   }, []); 
 
-  // const handleChange = (event) => {
-  //   setSelectedOption(event.target.value);
-  // };
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -47,6 +59,7 @@ const CreateUser = () => {
     firstName: '',
     lastName: '',
     role: '',
+    password: '',
   });
 
   const [isChecked, setIsChecked] = useState(false)
@@ -62,21 +75,15 @@ const CreateUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(createUser(userData));
     setErrorMessage('');
     setSuccessMessage('');
-
-    try {
-      const response = await axios.post('http://localhost:3122/accounts/user', userData);
-      console.log(response.data);
-    } catch (error) {
-      console.error('Signup error:', error.message);
-    }
-  console.log('Signup submitted:', userData);
 };
         // setUserData({ username: '', email: '', password: '' })
 
   return (
     <div className='div-create-user'>
+    <form className={classes.form} onSubmit={handleSubmit}>
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <Typography variant="h5">Create User</Typography>
@@ -133,7 +140,7 @@ const CreateUser = () => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={12}>
+      {/* <Grid item xs={12}>
         <FormControl fullWidth>
         <MyCheckbox
         label="Active"
@@ -141,7 +148,7 @@ const CreateUser = () => {
         onChange={handleCheckboxChange}
       />
         </FormControl>
-      </Grid>
+      </Grid> */}
       <Grid item xs={12}>
         <Button
           variant="contained"
@@ -153,6 +160,7 @@ const CreateUser = () => {
         </Button>
       </Grid>
     </Grid>
+    </form>
     </div>
   );
 };

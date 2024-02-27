@@ -17,21 +17,18 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateEngagementType = () => {
   const classes = useStyles();
-  const [businessUnit, setBusinessUnit] = useState('');
+  const [businessUnitName, setBusinessUnitName] = useState('');
 
-  const handleChange = (e) => {
-    setBusinessUnit(e.target.value);
-  };
-
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:5000/signup', businessUnit);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Signup error:', error.message);
-      }
-    console.log('Business Unit created:', businessUnit);
+      const response = await axios.post('http://your-api-url/business-unit', {
+        name: businessUnitName
+      });
+      console.log('Business unit submitted:', response.data);
+    } catch (error) {
+      console.error('Error submitting business unit:', error);
+    }
   };
 
   return (
@@ -40,8 +37,8 @@ const CreateEngagementType = () => {
         label="Engagement"
         variant="outlined"
         className={classes.inputField}
-        value={businessUnit}
-        onChange={handleChange}
+        value={businessUnitName}
+        onChange={(e) => setBusinessUnitName(e.target.value)}
         required
       />
       

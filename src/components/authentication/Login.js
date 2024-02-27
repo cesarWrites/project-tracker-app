@@ -51,7 +51,6 @@ const Login = () => {
     if(response.status == 200){
       navigate('/dashboard');
     }
-    // Redirect to project list
       } catch (error) {
         console.error('Login error:', error.message);
       }
