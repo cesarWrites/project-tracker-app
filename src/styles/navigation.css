@@ -1,0 +1,13 @@
+.MuiAppBar-root {
+    height: 10%;
+    width: 100%;
+  }
+
+  .settings-det{
+    transition-timing-function: ease-in;
+    transition-delay: 1s;
+    height: '30%';
+    background-color: #fff;
+    transition: height 3s vertical 1s;
+    transition: transform 2s;
+  }

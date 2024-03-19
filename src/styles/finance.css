@@ -9,3 +9,17 @@ AppBar {
 .comment-form button{
     margin-left: 25%;
 }
+
+.Toastify{
+    font-family: 'Arial', sans-serif;
+}
+
+.Toastify__toast--success{
+    background-color: #4caf50;
+}
+
+.info-div{
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
