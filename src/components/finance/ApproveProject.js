@@ -4,7 +4,7 @@ const FinanceApproval = () => {
   return (
     <div>
       <h2>Finance Approval Section</h2>
-      <ProjectReview/>
+      {/* <ProjectReview/> */}
     </div>
   );
 };

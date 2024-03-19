@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TextField, Button, Checkbox, ListItem, ListItemText, List, ListItemSecondaryAction, FormControlLabel, makeStyles } from '@material-ui/core';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DataContext from '../../state/DataContext';
 
 const useStyles = makeStyles((theme) => ({
   form:{
@@ -18,44 +23,55 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   Button: {
-
-  }
+    padding: '5%'
+  },
+  table: {
+    minWidth: 300,
+    maxWidth: 600,
+    margin: 'auto', 
+    marginTop: '4%',
+  },
+  headerCell: {
+    fontWeight: 'bold', 
+  },
+  buttonGroup: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
 }));
 
 const SigningEntity = () => {
   const classes = useStyles();
-  const [industryName, setIndustryName] = useState('');
-  const [industries, setIndustries] = useState([]);
-  const [activeIndustries, setActiveIndustries] = useState([]);
+  const [entity, setEntity] = useState('');
+  // const [entities, setEntities] = useState([])
+  const { data3 } = useContext(DataContext);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!industryName.trim()) return;
 
-    try {
-      const response = await axios.post('/api/industries', {
-        name: industryName,
-        active: false, 
-      });
+  const handleDelete = () => {
+    
+  }
 
-      if (response.status === 201) {
-        setIndustries([...industries, industryName]);
-        setActiveIndustries([...activeIndustries, false]); // Initialize active state as false
-        setIndustryName('');
-      } else {
-        console.error('Failed to add industry');
-      }
-    } catch (error) {
-      console.error('Error adding industry:', error.message);
-    }
-  };
+  const handleEdit = () => {
 
-  const handleToggle = (index) => {
-    const updatedActiveIndustries = [...activeIndustries];
-    updatedActiveIndustries[index] = !updatedActiveIndustries[index];
-    setActiveIndustries(updatedActiveIndustries);
+  }
+
+  const showToastMessage = () => {
+    toast.success("Success Notification!", {
+    });
   };
   const handleChange = (e) => {
+    setEntity(e.target.value);
+  };
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('http://34.125.226.2:3123/projects_service/finance/signing_entity', {entity:entity});
+        showToastMessage('Entity created');
+      } catch (error) {
+        toast.error('error');
+      }
   };
 
   return (
@@ -65,7 +81,7 @@ const SigningEntity = () => {
         label="Signing Entity"
         variant="outlined"
         className={classes.inputField}
-        value={industryName}
+        value={entity}
         onChange={handleChange}
         required
       />
@@ -73,30 +89,9 @@ const SigningEntity = () => {
       color="primary" 
       style={{ backgroundColor: '#5EAFD3', marginTop: '1rem' }} 
       type="submit">
-        Signing Entity
+        Submit
       </Button>
     </form>
-    <div className={classes.listContainer}>
-        <List>
-          {industries.map((industry, index) => (
-            <ListItem key={index}>
-              <ListItemText primary={industry} />
-              <ListItemSecondaryAction>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={activeIndustries[index]}
-                      onChange={() => handleToggle(index)}
-                      color="primary"
-                    />
-                  }
-                  label="Active"
-                />
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
-      </div>
     </div>
   );
 };

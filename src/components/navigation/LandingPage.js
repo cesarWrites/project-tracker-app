@@ -4,23 +4,33 @@ import SideNavbar from './Sidenavbar';
 import ProjectList from '../projects/projectList';
 import ConfirmedProjects from '../projects/ConfirmedProjects';
 import '../../App.css';
+import SettingsNav from './SettingsNav';
+import NavigationBar from './NavigationBar';
+import SideNav from './SideNav';
+import { Grid } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import FinanceNavigation from '../finance/FinanceNav';
+
+const useStyles = makeStyles((theme) => ({
+  form: {
+      marginBottom: '5%',
+      marginLeft: '5%',
+      alignContent: 'center',
+      marginRight: '5%',
+    },
+    grid: {
+      margin: '2%',
+    }
+    
+}));
 
 const LandingPage = () => {
+  const classes = useStyles();
     return (
         <div className='dashboard-container'>
-        <div className="sidebar">
-        <SideNavbar />
-        </div>
+          <NavigationBar/>
+          <SideNavbar/>
         <div className='content'>
-            <div className='quick-links'>
-              <QuickAction />
-            </div>
-            <div className='table-container'>
-              <ConfirmedProjects />
-            </div>
-          </div>
-          <div className='table-container'>
-            <ProjectList />
           </div>
       </div>
           );

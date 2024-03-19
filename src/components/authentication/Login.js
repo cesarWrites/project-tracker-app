@@ -4,6 +4,9 @@ import { Button, TextField, Typography, Container, makeStyles, Link } from '@mat
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import NavSection from '../navigation/NavComponent';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cookies from 'js-cookie';
 
 const useStyles = makeStyles((theme) => ({
   formContainer: {
@@ -39,32 +42,41 @@ const Login = () => {
     password: '',
   });
 
+  const showToastMessage = () => {
+    toast.success("Success Notification!", {
+    });
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData({...userData, [name]: value});
+    setUserData({...userData, [name]: value})
   }
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-    const response = await axios.get('http://localhost:3122/accounts/user', userData);
-    if(response.status == 200){
-      navigate('/dashboard');
-    }
-      } catch (error) {
-        console.error('Login error:', error.message);
-      }
+      console.log('here is the user', userData)
+    // const response = await axios.get('http://34.125.226.2:3122/auth_service/accounts/user', {params:userData});
+    const response = axios.get('https://e104-105-162-11-197.ngrok-free.app', {params:userData})
+    response.then((res) =>{
+      console.log(res)
+      console.log('here is the status ', res)
+      alert('user found')
+      navigate('verify-otp', {state:{name:'one tow',email:userData.email}})
+    }).catch((error)=> {
+      alert('user not found')
+      console.log(error.message);
+    })
+    showToastMessage('Success!')
   };
   const handleForgotPassword = () => {
     navigate('/forgot-password');
   };
 
   return (
-    <div>
+    <div className='div-login'>
     <NavSection/>
     <Container className={classes.formContainer} component="main" maxWidth="xs">
-      <Typography variant="h5">Login</Typography>
-      <form className={classes.form} onSubmit={handleSubmit}>
+      {/* <Typography variant="h5">Login</Typography> */}
+      <form className={classes.form}>
         <TextField
           className={classes.formField}
           variant="outlined"
@@ -95,9 +107,11 @@ const Login = () => {
         fullWidth 
         variant="contained" 
         color="primary"
+        onClick={handleSubmit}
         className={classes.submitButton}>
           Login
         </Button>
+        <ToastContainer/>
         <Link className={classes.forgotPasswordLink} onClick={handleForgotPassword}>
           Forgot Password?
         </Link>

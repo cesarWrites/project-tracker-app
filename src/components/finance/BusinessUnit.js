@@ -14,26 +14,36 @@ const useStyles = makeStyles((theme) => ({
   inputField: {
     marginBottom: theme.spacing(2),
   },
+  Button: {
+    padding: '5%',
+  },
 }));
 
 const CreateBusinessUnitForm = () => {
   const classes = useStyles();
-  const [businessUnit, setBusinessUnit] = useState('');
+  const [entity, setEntity] = useState('');
+  const [notation, setNotation] = useState('');
 
-  const handleChange = (e) => {
-    setBusinessUnit(e.target.value);
+  const handleNotationChange = (e) => {
+    setNotation(e.target.value);
   };
+
+  const handleBusinessUnitChange = (e) =>{
+    setEntity(e.target.value);
+  } 
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:5000/businessUnit', businessUnit);
-        console.log(response.data);
+        const response = await axios.post('http://34.125.226.2:3123/projects_service/finance/business_unit', {notation:notation,entity:entity});
+        console.log(response.data );
       } catch (error) {
+        console.log(notation)
         console.error('Error creating business unit error:', error.message);
       }
-    console.log('Business Unit created:', businessUnit);
   };
+
+  
 
   return (
     <div>
@@ -42,26 +52,26 @@ const CreateBusinessUnitForm = () => {
         label="Notation"
         variant="outlined"
         className={classes.inputField}
-        value={businessUnit}
-        onChange={handleChange}
+        value={notation}
+        onChange={handleNotationChange}
         required
       />
       <TextField
         label="Business Unit"
         variant="outlined"
         className={classes.inputField}
-        value={businessUnit}
-        onChange={handleChange}
+        value={entity}
+        onChange={handleBusinessUnitChange}
         required
       />
       <Button variant="contained" 
+      className={classes.button}
       color="primary" 
       style={{ backgroundColor: '#5EAFD3', marginTop: '1rem' }} 
       type="submit">
-        Business Unit
+        Submit
       </Button>
     </form>
-    <BusinessUnitList/>
     </div>
   );
 };

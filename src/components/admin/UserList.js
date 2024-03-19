@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     const [users, setUsers] = useState([]);
    
     useEffect(() => {
-      // Fetch project data from the server when the component mounts
       const fetchData = async () => {
         try {
           const response = await axios.get('http://localhost:5000/users');

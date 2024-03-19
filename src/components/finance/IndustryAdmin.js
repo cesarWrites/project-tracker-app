@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TextField, Button, makeStyles } from '@material-ui/core';
 import axios from 'axios';
-import BusinessUnitList from './BusinessUnitList';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
+import DataContext from '../../state/DataContext';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -14,26 +19,78 @@ const useStyles = makeStyles((theme) => ({
   inputField: {
     marginBottom: theme.spacing(2),
   },
+  Button: {
+    padding: '5%'
+  },
+  table: {
+    minWidth: 300,
+    maxWidth: 600,
+    margin: 'auto', 
+    marginTop: '4%',
+  },
+  headerCell: {
+    fontWeight: 'bold', 
+  },
+  buttonGroup: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  deleteButton: {
+    backgroundColor: theme.palette.error.main,
+    color: theme.palette.error.contrastText,
+    '&:hover': {
+      backgroundColor: theme.palette.error.dark,
+    },
+  },
 }));
 
-const CreateBusinessUnitForm = () => {
+const CreateIndustry = () => {
   const classes = useStyles();
-  const [businessUnit, setBusinessUnit] = useState('');
+  const [industry, setIndustry] = useState('');
+  const { data1 } = useContext(DataContext);
+  // const [industryVal, setIndustryVal] = useState([]);
+
+  // useEffect(() => {
+  //   axios.get('http://34.125.226.2:3123/projects_service/finance/?filter=INDUSTRY')
+  //     .then(response => {
+  //       const industryData = response.data.data.data;
+  //         setIndustryVal(industryData);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
+  // }, []);
+
+
+  const showToastMessage = () => {
+    toast.success("Success Notification!", {
+    });
+  };
 
   const handleChange = (e) => {
-    setBusinessUnit(e.target.value);
+    setIndustry(e.target.value);
   };
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('http://localhost:5000/businessUnit', businessUnit);
-        console.log(response.data);
+        const response = await axios.post('http://34.125.226.2:3123/projects_service/finance/industry', {industry:industry});
+        showToastMessage();
+        console.log(response.status);
       } catch (error) {
-        console.error('Error creating business unit error:', error.message);
-      }
-    console.log('Business Unit created:', businessUnit);
-  };
+        toast.error('error');
+  }
+}
+
+const handleDelete = () => {
+    
+}
+
+const handleEdit = () => {
+
+}
+      
 
   return (
     <div>
@@ -42,7 +99,7 @@ const CreateBusinessUnitForm = () => {
         label="Industry"
         variant="outlined"
         className={classes.inputField}
-        value={businessUnit}
+        value={industry}
         onChange={handleChange}
         required
       />
@@ -50,11 +107,12 @@ const CreateBusinessUnitForm = () => {
       color="primary" 
       style={{ backgroundColor: '#5EAFD3', marginTop: '1rem' }} 
       type="submit">
-        Industry
+        Submit
       </Button>
+      <ToastContainer/>
     </form>
     </div>
   );
 };
 
-export default CreateBusinessUnitForm;
+export default CreateIndustry;

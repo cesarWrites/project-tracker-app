@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { createUser } from '../../state/userSlice'
-import MyCheckbox from '../utils/MyCheckbox';
 import '../../styles/user.css';
 import axios from 'axios';
 
@@ -75,7 +73,6 @@ const CreateUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(createUser(userData));
     setErrorMessage('');
     setSuccessMessage('');
 };

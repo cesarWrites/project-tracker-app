@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Select, MenuItem, FormControl, InputLabel, Grid, Typography, Button } from '@mui/material';
 import '../../styles/survey.css';
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHead } from '../../state/context'
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -15,150 +15,169 @@ const useStyles = makeStyles((theme) => ({
 
 const LOEInfoSection =() => {
     const classes = useStyles();
-    const [inputValue, setInputValue] = useState('');
 
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-      };
+    const [optionInput, setOptionInput] = useState('');
+    const [budgetInput, setBudgetInput] = useState('');
+    const [partnerLoe, setPartnerLoe] = useState('');
+    const [aPartnerLoe, setApartnerLoe] = useState('');
+    const [principal, setPrincipal] = useState('');
+    const [sPL, setSPL] = useState('');
+    const [plLOE, setPlLOE] = useState('');
+    const [Associate, setAssociate] = useState('');
+    const [Analyst, setAnalyst] = useState('')
+    const { head, addHead } = useHead();
+    
+    const options = [
+      { value: 'yes', label: 'yes' },
+      { value: 'no', label: 'no' }
+    ]
+
+    const handleOptionInputChange = (event) => {
+      setOptionInput(event.target.value);
+      addHead('option', event.target.value)
+    }
+
+    const handleBudgetInput = (event) => {
+      setBudgetInput(event.target.value);
+      addHead('budget', event.target.value);
+    }
+
+    const handlePartnerLoe = (event) => {
+      setPartnerLoe(event.target.value);
+      addHead('partner', event.target.value);
+    }
+
+    const handleAPartnerLoe =(event) => {
+      setApartnerLoe(event.target.value);
+      addHead('Apartner', event.target.value)
+    }
+    const handleProjectLeaderLOE =(event) => {
+      setPlLOE(event.target.value);
+      addHead('PL', event.target.value);
+    }
+
+    const handlePrincipalLOE = (event) => {
+      setPrincipal(event.target.value);
+      addHead('principal', event.target.value);
+    }
+
+    const handleSeniorPLLOE = (event) => {
+      setSPL(event.target.value);
+      addHead('seniorPL', event.target.value);
+    }
+
+    const handleAssociateLOE = (event) =>{
+      setAssociate(event.target.value);
+      addHead('associate', event.target.value);
+    }
+
+    const handleAnalystLOE = (event) => {
+      setAnalyst(event.target.value);
+      addHead('analyst', event.target.value)
+    }
+
     return(
-        <div className='loe-info'>
-            <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
-            <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
-        <InputLabel htmlFor="email">Budget LOE (Approved by AP for 300K or Partner for 300K)</InputLabel>
-        </Grid>
-        <Grid xs={8}>
+        <div className='loe-info' style={{ marginLeft: '15%', marginTop: '2%', width: 'fit-content'}}>
+            <form  className={classes.form}>
+              <Typography>LOE Section</Typography>
+      <Grid container spacing={2}>
+      <Grid item xs={6}>
+      <InputLabel htmlFor="dropdown">Have you already provided budget for this project?</InputLabel>
+      <Select
+        id="dropdown"
+        value={head.option && head.option}
+        onChange={handleOptionInputChange}
+        label="Select an option"
+        fullWidth
+      >
+        {options.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+      </Grid>
+        <Grid item xs={6}>
+        <InputLabel htmlFor="budget">Budget LOE (Approved by AP for 300K or Partner for 300K)</InputLabel>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={head.budget && head.budget}
+            onChange={handleBudgetInput}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
         <InputLabel htmlFor="email">Partner</InputLabel>
-        </Grid>
-        <Grid xs={8}>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={head.partner && head.partner}
+            onChange={handlePartnerLoe}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
         <InputLabel htmlFor="email">Associate Partner</InputLabel>
-        </Grid>
-        <Grid xs={8}>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={head.Apartner && head.Apartner}
+            onChange={handleAPartnerLoe}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
-        <InputLabel htmlFor="email">Associate Partner</InputLabel>
-        </Grid>
-        <Grid xs={8}>
-          <TextField
-            id="email-input"
-            variant="outlined"
-            fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
-          />
-        </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
         <InputLabel htmlFor="email">Principal</InputLabel>
-        </Grid>
-        <Grid xs={8}>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={head.principal && head.principal}
+            onChange={handlePrincipalLOE}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
         <InputLabel htmlFor="email">Senior PL/Senior TL</InputLabel>
-        </Grid>
-        <Grid xs={8}>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={''}
-            onChange={handleInputChange}
+            value={head.seniorPL && head.seniorPL}
+            onChange={handleSeniorPLLOE}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
         <InputLabel htmlFor="email">Project Leader/Transaction Leader</InputLabel>
-        </Grid>
-        <Grid xs={8}>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={head.PL && head.PL}
+            onChange={handleProjectLeaderLOE}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
         <InputLabel htmlFor="email">(S) Associate</InputLabel>
-        </Grid>
-        <Grid xs={8}>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={head.associate && head.associate}
+            onChange={handleAssociateLOE}
           />
         </Grid>
-      </Grid>
-      <Grid container spacing={2} margin={'auto'}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
         <InputLabel htmlFor="email">(S) Analyst</InputLabel>
-        </Grid>
-        <Grid xs={8}>
           <TextField
             id="email-input"
             variant="outlined"
             fullWidth
-            value={inputValue}
-            onChange={handleInputChange}
+            value={head.analyst && head.analyst}
+            onChange={handleAnalystLOE}
           />
         </Grid>
       </Grid>
-        {/* <Grid item xs={12} marginLeft={50}>
-        <Button
-          variant="contained"
-          color="primary"
-          className={classes.submitButton}
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
-      </Grid> */}
             </form>
         </div>
     )

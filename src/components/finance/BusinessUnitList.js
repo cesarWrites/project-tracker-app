@@ -1,69 +1,121 @@
-import React, { useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
+import React, { useContext, useEffect, useState } from 'react';
+import { Table, TableBody, TableCell, TableContainer, Typography, 
+  TableHead, TableRow, Paper, Button, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import axios from 'axios';
+import DataContext from '../../state/DataContext';
+import { Link } from 'react-router-dom';
+import CreateBusinessUnitForm from './BusinessUnit';
+import  CancelIcon from '@material-ui/icons/Cancel';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 300,
     maxWidth: 600,
     margin: 'auto', 
-    marginTop: '4%',
+    marginTop: '10%',
   },
   headerCell: {
     fontWeight: 'bold', 
+    backgroundColor: '#276D8D',
+    color: '#D5D8DC'
   },
-});
+  buttonGroup: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  Button: {
+    padding: '5%',
+  },
+}));
+
+
 
 const BusinessUnitList = () => {
   const classes = useStyles();
-  const initialItems = [
-    { id: 1, item1: 'Value 1', item2: 'Value 2' },
-    { id: 2, item1: 'Value 3', item2: 'Value 4' },
-  ];
-
-  const [items, setItems] = useState(initialItems);
   const [editedItems, setEditedItems] = useState([]);
+  const { data4 } = useContext(DataContext);
 
-  const handleEdit = (id, field, value) => {
-    const editedItemIndex = editedItems.findIndex(item => item.id === id);
-    if (editedItemIndex !== -1) {
-      const newEditedItems = [...editedItems];
-      newEditedItems[editedItemIndex][field] = value;
-      setEditedItems(newEditedItems);
-    } else {
-      setEditedItems([...editedItems, { id, [field]: value }]);
-    }
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  const handleSave = () => {
-    const updatedItems = items.map(item => {
-      const editedItem = editedItems.find(eItem => eItem.id === item.id);
-      return editedItem ? { ...item, ...editedItem } : item;
-    });
-    setItems(updatedItems);
-    setEditedItems([]);
+  const handleClose = () => {
+    setOpen(false);
   };
+
+
+  const handleDelete = () => {
+    
+  }
+
+  const handleEdit = () => {
+
+  }
 
   return (
     <div>
+       <div className='settings-nav' style={{  width: '100%', height: 'fit-content', padding: '1%', 
+    backgroundColor: '#FDEBDO', 
+    borderBottom: '1px solid #D5D8DC', 
+    marginTop: '4%'}}>
+      
+      <Button variant="contained"
+      className={classes.button}
+      color="primary" 
+      onClick={handleClickOpen}
+      style={{ backgroundColor: '#5EAFD3', marginLeft: '70%',
+      marginTop: '1rem' }} >Add Business Unit</Button>
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title"
+      fullWidth>
+        <DialogTitle id="form-dialog-title">
+          <Grid container alignItems="center">
+            <Grid item xs={11}>
+            Enter details
+            </Grid>
+            <Grid item xs={1} style={{ textAlign: 'right' }}>
+            <Button onClick={handleClose} color="primary">
+              <CancelIcon/>
+          </Button>
+            </Grid>
+          </Grid>
+          
+          </DialogTitle>
+        <DialogContent>
+        <CreateBusinessUnitForm/>
+        </DialogContent>
+        <DialogActions>
+        </DialogActions>
+      </Dialog>
+        <Typography variant='h4' style={{ marginLeft: '20%', color: '#276D8D'}}> Hi, 
+        </Typography>
+    </div>
       <TableContainer component={Paper} className={classes.table}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell className={classes.headerCell}>Notation</TableCell>
               <TableCell className={classes.headerCell}>Business Unit</TableCell>
-              <TableCell className={classes.headerCell}>Edit</TableCell>
+              <TableCell className={classes.headerCell}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map(item => (
-              <TableRow key={item.id}>
-                <TableCell contentEditable={true} onBlur={(e) => handleEdit(item.id, 'item1', e.target.innerText)}>{item.item1}</TableCell>
-                <TableCell contentEditable={true} onBlur={(e) => handleEdit(item.id, 'item2', e.target.innerText)}>{item.item2}</TableCell>
+            {data4.map(unit => (
+              <TableRow key={unit.id}>
+                <TableCell >{unit.notation}</TableCell>
+                <TableCell>{unit.entity}</TableCell>
                 <TableCell>
-                  <Button onClick={() => handleSave()} variant="contained" color="primary">
-                    Save
-                  </Button>
+                <IconButton aria-label="delete">
+                  <DeleteIcon />
+                </IconButton>
+                <IconButton aria-label="edit" >
+                  <EditIcon />
+                </IconButton>
                 </TableCell>
               </TableRow>
             ))}

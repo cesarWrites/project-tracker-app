@@ -4,7 +4,7 @@ import '../../App.css';
 const NavSection = () => {
     return(
         <header className='logo'>
-          <img src={logo} alt='OCA logo'/>
+        <img src={logo} alt='OCA logo'/> 
         </header>
     )
 };
